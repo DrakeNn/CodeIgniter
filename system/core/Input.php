@@ -426,7 +426,7 @@ class CI_Input {
 			$proxy_ips = explode(',', str_replace(' ', '', $proxy_ips));
 		}
 
-		$this->ip_address = $this->server('REMOTE_ADDR');
+		$this->ip_address = ($this->server('HTTP_CF_CONNECTING_IP') !== NULL) ? $this->server('HTTP_CF_CONNECTING_IP') : $this->server('REMOTE_ADDR');
 
 		if ($proxy_ips)
 		{
